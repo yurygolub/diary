@@ -134,6 +134,10 @@ int toInt(string str)
 
 void readFile(vector<Record>& vectorRecord, string path)
 {
+	Date date;
+	int sum;
+	string info;
+
 	fstream fs;
 	fs.open(path, fstream::in | fstream::app);
 	if (!fs.is_open())
@@ -147,7 +151,14 @@ void readFile(vector<Record>& vectorRecord, string path)
 
 		while (true)
 		{
-			fs >> temp;
+			//fs >> temp;
+
+			fs >> date;
+			fs >> sum;
+			fs.ignore();
+			getline(fs, info);
+
+			temp.setRecord(date, sum, info);
 						
 			if (fs.eof())
 			{
